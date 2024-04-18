@@ -39,7 +39,7 @@ export default function Home() {
             <input type='password' value={senha} onChange={e => setSenha(e.target.value)} className='form-control' />
           </div>
           <div className="mt-3 btn-goup text-center">
-            <a className="btn btn-link" onClick={() => { router.push('/userForm') }}>
+            <a className="btn btn-link" onClick={() => { router.push('/user') }}>
               Cadastrar-se
             </a>
             <button className='btn btn-primary' onClick={logar}>
