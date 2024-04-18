@@ -1,6 +1,6 @@
 import JSONDatabase from '../../config/database';
 
-export default async function handler(req, res) {
+export default async function Handler(req, res) {
     try {
         const dbUsers = new JSONDatabase('users');
         const users = await dbUsers.getAll();
