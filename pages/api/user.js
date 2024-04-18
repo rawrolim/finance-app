@@ -1,7 +1,6 @@
-import JSONDatabase from '../../config/database';
 
 export default async function handler(req, res) {
-  try {
+  /*try {
     const dbUsers = new JSONDatabase('users');
     if (req.method == 'POST') {
       const user = await dbUsers.push(req.body);
@@ -19,5 +18,5 @@ export default async function handler(req, res) {
   } catch (e) {
     console.log(e)
     res.status(500).json()
-  }
+  }*/
 }
