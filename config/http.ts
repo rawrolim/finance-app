@@ -12,5 +12,4 @@ const http = axios.create({
     baseURL: process.env.AUTH_URL
 });
 
-console.log("TESTEEE")
 export default http;
