@@ -3,7 +3,7 @@ import md5 from "md5";
 import { useRouter } from "next/router";
 import { useState } from "react"
 
-export default function userForm() {
+export default function handler() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [nome, setNome] = useState('');
