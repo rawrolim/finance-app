@@ -1,4 +1,3 @@
-import md5 from "md5";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from '../../config/http';
