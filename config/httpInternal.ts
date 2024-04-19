@@ -1,20 +1,25 @@
 import axios from "./http";
 
-const headersDefault = { headers: { "Authorization": '',endpoint: '' } }
+const headersDefault = { 
+    headers: { 
+    "Authorization": '',
+    endpoint: '' 
+} 
+}
 
 const httpInternal = {
-    get: async (uri='', config = headersDefault, instancia = 0) => {
+    get: async (uri='', instancia = 0) => {
         const token = JSON.parse(localStorage.getItem('token'));
         if (token && instancia < 2) {
-            config.headers.Authorization = token;
-            config.headers.endpoint = uri
+            headersDefault.headers.Authorization = token;
+            headersDefault.headers.endpoint = uri
             try {
-                const res = await axios.get('middleware', config);
+                const res = await axios.get('middleware', headersDefault);
                 return res.data;
             } catch (e) {
                 if (e.response.status == 401) {
                     await refreshToken();
-                    return httpInternal.get(uri, config, instancia + 1);
+                    return httpInternal.get(uri, instancia + 1);
                 } else {
                     return e.response;
                 }
@@ -22,18 +27,18 @@ const httpInternal = {
         }
     },
 
-    post: async (uri='', data, config = headersDefault, instancia = 0) => {
+    post: async (uri='', data={}, instancia = 0) => {
         const token = JSON.parse(localStorage.getItem('token'));
         if (token && instancia < 2) {
-            config.headers.Authorization = token;
-            config.headers.endpoint = uri
+            headersDefault.headers.Authorization = token;
+            headersDefault.headers.endpoint = uri
             try {
-                const res = await axios.post(process.env.URL_BACKEND + uri, data, config);
+                const res = await axios.post(process.env.URL_BACKEND + uri, data, headersDefault);
                 return res.data;
             } catch (e) {
                 if (e.response.status == 401) {
                     await refreshToken();
-                    return httpInternal.post(uri, data, config, instancia + 1);
+                    return httpInternal.post(uri, data, instancia + 1);
                 } else {
                     return e.response;
                 }
@@ -41,18 +46,18 @@ const httpInternal = {
         }
     },
 
-    put: async (uri='', data={}, config = headersDefault, instancia = 0) => {
+    put: async (uri='', data={}, instancia = 0) => {
         const token = JSON.parse(localStorage.getItem('token'));
         if (token && instancia < 2) {
-            config.headers.Authorization = token;
-            config.headers.endpoint = uri
+            headersDefault.headers.Authorization = token;
+            headersDefault.headers.endpoint = uri
             try {
-                const res = await axios.put(process.env.URL_BACKEND + uri, data, config);
+                const res = await axios.put(process.env.URL_BACKEND + uri, data, headersDefault);
                 return res.data;
             } catch (e) {
                 if (e.response.status == 401) {
                     await refreshToken();
-                    return httpInternal.put(uri, data, config, instancia + 1);
+                    return httpInternal.put(uri, data, instancia + 1);
                 } else {
                     return e.response;
                 }
@@ -60,18 +65,18 @@ const httpInternal = {
         }
     },
 
-    delete: async (uri='', config = headersDefault, instancia = 0) => {
+    delete: async (uri='', instancia = 0) => {
         const token = JSON.parse(localStorage.getItem('token'));
         if (token && instancia < 2) {
-            config.headers.Authorization = token;
-            config.headers.endpoint = uri
+            headersDefault.headers.Authorization = token;
+            headersDefault.headers.endpoint = uri
             try {
-                const res = await axios.delete(process.env.URL_BACKEND + uri, config);
+                const res = await axios.delete(process.env.URL_BACKEND + uri, headersDefault);
                 return res.data;
             } catch (e) {
                 if (e.response.status == 401) {
                     await refreshToken();
-                    return httpInternal.delete(uri, config, instancia + 1);
+                    return httpInternal.delete(uri, instancia + 1);
                 } else {
                     return e.response;
                 }
