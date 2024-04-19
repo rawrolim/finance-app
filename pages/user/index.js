@@ -1,14 +1,14 @@
 import md5 from "md5";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import axios from '../config/http';
+import axios from '../../config/http';
 
 export default function Handler() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [nome, setNome] = useState('');
     const route = useRouter();
-    console.log('ENV',process.env.AUTH_URL, axios)
+    
     async function save() {
         const user = await axios.post('createUser', {
             email,

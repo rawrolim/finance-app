@@ -1,24 +1,25 @@
-import axios from "axios";
-import md5 from "md5";
+import axios from "../config/http";
 import { useRouter } from "next/router"
 import { useState } from "react";
 import useLocalStorage from '../hooks/useLocalStorage';
+import { toast } from "react-toastify";
 
 export default function Home() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [user, setUser] = useLocalStorage("user", "");
+  const [token, setToken] = useLocalStorage("token", "");
 
   async function logar() {
     try {
-      const res = await axios.post('/api/logar', {
+      const res = await axios.post('/login', {
         email,
-        senha: md5(senha)
+        senha
       });
-      setUser(res.data);
+      setToken(res.data.jwtToken);
       router.push("home")
     } catch (e) {
+      toast.error(e.response.data.message)
       console.error(e)
     }
   }
