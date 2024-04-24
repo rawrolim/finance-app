@@ -6,6 +6,7 @@ const nextConfig = {
     AUTH_URL: process.env.AUTH_URL,
     AUTH_EMPRESA_ID: process.env.AUTH_EMPRESA_ID,
     AUTH_APP_ID: process.env.AUTH_APP_ID,
+    POSTGRES_URL: process.env.POSTGRES_URL
   },
   async headers() {
     return [

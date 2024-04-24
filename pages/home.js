@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import httpInternal from '../config/httpInternal'
+import { useRouter } from "next/router";
 
 export default function Handler() {
+    const router = useRouter();
+
     useEffect(async ()=>{
         await send()
     },[]);
@@ -12,8 +15,11 @@ export default function Handler() {
 
     return (
         <div>
-            <button onClick={send}> 
+            <button className="btn" onClick={send}> 
                 Testar
+            </button>
+            <button className="btn" onClick={()=>router.push("/entradas")}> 
+                Entradas
             </button>
         </div>
     )

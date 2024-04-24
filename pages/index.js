@@ -9,6 +9,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [token, setToken] = useLocalStorage("token", "");
+  const [emailStorage, setEmailStorage] = useLocalStorage("user", "");
 
   async function logar() {
     try {
@@ -17,9 +18,14 @@ export default function Home() {
         senha
       });
       setToken(res.data.jwtToken);
+      setEmailStorage(email);
       router.push("home")
     } catch (e) {
-      toast.error(e.response.data.message)
+      if(e.response){
+        toast.error(e.response.data.message);
+      }else{
+        toast.error(e);
+      }
       console.error(e)
     }
   }
